@@ -9,10 +9,12 @@
  **********************************************************************************************/
 /** Map relative paths to URLs. */
 const map: any = {
+  'moment': 'vendor/moment/moment.js'
 };
 
 /** User packages configuration. */
 const packages: any = {
+  'moment': { format: 'cjs' }
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
