@@ -12,4 +12,6 @@ import { FromNowPipe } from './shared';
 })
 export class AppComponent {
   title = 'app works!';
+  myDate = new Date(1470002400000);
+  myPost = { body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?' }
 }

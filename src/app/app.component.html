@@ -1,3 +1,12 @@
 <h1>
   {{title}}
 </h1>
+
+<div>
+  From now : {{ myDate }} was {{ myDate | fromNow }}.<br/>
+</div>
+<br />
+<div>
+  Long Body : {{ myPost.body }}<br />
+  Summary : {{ myPost.body | summary }}
+</div>
