@@ -7,6 +7,8 @@ module.exports = function (config) {
     frameworks: ['jasmine'],
     plugins: [
       require('karma-jasmine'),
+      require('karma-coverage'),
+      require('karma-remap-istanbul'),
       require('karma-chrome-launcher')
     ],
     customLaunchers: {
@@ -28,14 +30,32 @@ module.exports = function (config) {
       { pattern: 'config/karma-test-shim.js', included: true, watched: true },
 
       // Distribution folder.
-      { pattern: 'dist/**/*', included: false, watched: true }
+      { pattern: 'dist/**/*', included: false, watched: true },
+
+      // paths to support debugging with source maps in dev tools
+      { pattern: 'src/**/*.ts', included: false, watched: false },
+      { pattern: 'dist/**/*.js.map', included: false, watched: false }
     ],
     exclude: [
       // Vendor packages might include spec files. We don't want to use those.
       'dist/vendor/**/*.spec.js'
     ],
-    preprocessors: {},
-    reporters: ['progress'],
+    preprocessors: {
+      'dist/app/**/!(*spec).js': ['coverage']
+    },
+    reporters: ['progress', 'coverage', 'karma-remap-istanbul'],
+    coverageReporter: {
+      reporters: [
+        { type: 'html' },
+        { type: 'json', subdir: '.', file: 'coverage-final.json' }
+      ]
+    },
+    remapIstanbulReporter: {
+      src: 'coverage/coverage-final.json',
+      reports: {
+        html: 'coverage'
+      }
+    },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
